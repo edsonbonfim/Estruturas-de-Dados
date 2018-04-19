@@ -2,20 +2,14 @@
  * Estrutura de Dados
  * Trabalho 4 (Arvore AVL)
  *
- * Repita o trabalho de arvore binaria de busca
- * fazendo as seguintes modificacoes:
- *
- * 1. Ao ler a arvore do arquivo, verificar se a arvore
- * esta ordenada e tambem balanceada
- *
- * 2. Ao inserir ou remover um elemento, verificar se a
- * arvore desbalanceou, se desbalanceou, uma msg de arvore
- * desbalanceada deve ser escrita na tela e o algoritimo de
- * balanceamento deve ser executado
+ * Edson Onildo
+ * Isabela Carvalho
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 typedef struct arvore
 {
@@ -47,80 +41,26 @@ arvore *ler(arvore *a, FILE *arq)
     return a;
 }
 
-int arvoreOrdenada(arvore *a, arvore *esq, arvore *dir)
-{
-    if (a == NULL)
-        return 1;
+int menor(arvore *a, int m) {
+    if (a != NULL && a->esq != NULL && a->dir != NULL) {
+        m = (m > a->esq->info) ? a->esq->info : m;
+        m = (m > a->dir->info) ? a->dir->info : m;
 
-    if (esq != NULL && a->info < esq->info)
-        return 0;
-
-    if (dir != NULL && a->info > dir->info)
-        return 0;
-
-    return arvoreOrdenada(a->esq, esq, a) && arvoreOrdenada(a->dir, a, dir);
+        m = menor(a->esq, m);
+        m = menor(a->dir, m);
+    }
+    return m;
 }
 
-arvore *inserir(arvore *a, int elemento)
-{
-    if (a == NULL)
-    {
-        a = (arvore *) malloc(sizeof(arvore));
-        a->info = elemento;
-        a->esq = NULL;
-        a->dir = NULL;
+int maior(arvore *a, int m) {
+    if (a != NULL && a->esq != NULL && a->dir != NULL) {
+        m = (m < a->esq->info) ? a->esq->info : m;
+        m = (m < a->dir->info) ? a->dir->info : m;
+
+        m = maior(a->esq, m);
+        m = maior(a->dir, m);
     }
-
-    else if (elemento < a->info)
-        a->esq = inserir(a->esq, elemento);
-
-    else
-        a->dir = inserir(a->dir, elemento);
-
-    return a;
-}
-
-arvore *remover(arvore *a, int elemento)
-{
-    if (a != NULL)
-    {
-        if (a->info == elemento)
-        {
-            if (a->esq == NULL && a->dir == NULL)
-            {
-                free(a);
-                return NULL;
-            }
-
-            else if (a->esq == NULL || a->dir == NULL)
-            {
-                arvore *aux = !a->esq ? a->dir : a->esq;
-                free(a);
-                return aux;
-            }
-
-            else
-            {
-                arvore *m = a->esq;
-
-                while (m->dir != NULL)
-                    m = m->dir;
-
-                a->info = m->info;
-                a->esq = remover(a->esq, a->info);
-
-                return a;
-            }
-        }
-
-        else if (elemento < a->info)
-            a->esq = remover(a->esq, elemento);
-
-        else
-            a->dir = remover(a->dir, elemento);
-    }
-
-    return a;
+    return m;
 }
 
 int altura(arvore *a)
@@ -137,65 +77,134 @@ int altura(arvore *a)
     return hd + 1;
 }
 
+bool arvoreOrdenada(arvore *a) {
+    if (a == NULL || a->esq == NULL || a->dir == NULL)
+        return true;
+
+    if (maior(a->esq, a->esq->info) > a->info || menor(a->dir, a->dir->info) < a->info)
+        return false;
+
+    return arvoreOrdenada(a->esq) && arvoreOrdenada(a->dir);
+}
+
+bool arvoreBalanceada(arvore *a) {
+    if (a == NULL || a->esq == NULL || a->dir == NULL)
+        return true;
+
+    int h = altura(a);
+
+    if (h - altura(a->esq) > 1 || h - altura(a->dir) > 1)
+        return false;
+
+    return arvoreBalanceada(a->esq) && arvoreBalanceada(a->dir);
+}
+
+arvore *inserir(arvore *a, int elem)
+{
+    if (a == NULL)
+    {
+        a = (arvore *) malloc(sizeof(arvore));
+        a->info = elem;
+        a->esq = NULL;
+        a->dir = NULL;
+    } else if (elem < a->info)
+        a->esq = inserir(a->esq, elem);
+
+    else
+        a->dir = inserir(a->dir, elem);
+
+    return a;
+}
+
+arvore *remover(arvore *a, int elem) {
+    if (a == NULL)
+        return NULL;
+
+    if (a->info == elem) {
+        if (a->esq == NULL && a->dir == NULL) {
+            free(a);
+            return NULL;
+        } else if (a->esq == NULL || a->dir == NULL) {
+            arvore *aux = !a->esq ? a->dir : a->esq;
+            free(a);
+            return aux;
+        } else {
+            arvore *m = a->esq;
+
+            while (m->dir != NULL)
+                m = m->dir;
+
+            a->info = m->info;
+            a->esq = remover(a->esq, a->info);
+
+            return a;
+        }
+    } else if (elem < a->info)
+        a->esq = remover(a->esq, elem);
+
+    else
+        a->dir = remover(a->dir, elem);
+
+    return a;
+}
+
 arvore *balancear(arvore *a)
 {
-    if (a != NULL)
-    {
-        int hd, he;
+    if (a == NULL)
+        return NULL;
 
-        a->esq = balancear(a->esq);
-        a->dir = balancear(a->dir);
+    int hd, he;
 
-        he = altura(a->esq);
-        hd = altura(a->dir);
+    a->esq = balancear(a->esq);
+    a->dir = balancear(a->dir);
 
-        // Desbalanceado para a direita
-        if (hd - he > 1)
-        {
-            int x;
-            arvore *aux = a->dir;
+    he = altura(a->esq);
+    hd = altura(a->dir);
 
-            while (aux->esq != NULL)
-                aux = aux->esq;
+    // Desbalanceado para a direita
+    if (hd - he > 1) {
+        int x;
+        arvore *aux = a->dir;
 
-            x = a->info;
-            a->info = aux->info;
+        while (aux->esq != NULL)
+            aux = aux->esq;
 
-            a->dir = remover(a->dir, aux->info);
-            a->esq = inserir(a->esq, x);
+        x = a->info;
+        a->info = aux->info;
 
-            a = balancear(a);
-        }
+        a->dir = remover(a->dir, aux->info);
+        a->esq = inserir(a->esq, x);
 
-            // Desabalanceado para a esquerda
-        else if (he - hd > 1)
-        {
-            int x;
-            arvore *aux = a->esq;
+        a = balancear(a);
+    }
 
-            while (aux->dir != NULL)
-                aux = aux->dir;
+        // Desabalanceado para a esquerda
+    else if (he - hd > 1) {
+        int x;
+        arvore *aux = a->esq;
 
-            x = a->info;
-            a->info = aux->info;
+        while (aux->dir != NULL)
+            aux = aux->dir;
 
-            a->esq = remover(a->esq, aux->info);
-            a->dir = inserir(a->dir, x);
+        x = a->info;
+        a->info = aux->info;
 
-            a = balancear(a);
-        }
+        a->esq = remover(a->esq, aux->info);
+        a->dir = inserir(a->dir, x);
+
+        a = balancear(a);
     }
 
     return a;
 }
 
-int existe(arvore *a, int elem)
+bool existe(arvore *a, int elem)
 {
     if (a == NULL)
-        return 0;
+        return false;
 
     if (a->info == elem)
-        return 1;
+        return true;
 
     return (a->info > elem) ? existe(a->esq, elem) : existe(a->dir, elem);
 }
@@ -249,42 +258,158 @@ void notacaoParenteses(arvore *a)
 
 void imprimirIntervalo(arvore *a, int x, int y)
 {
-    if (a != NULL)
-    {
-        if (a->info >= x && a->info <= y)
-            printf("%d ", a->info);
+    if (a == NULL)
+        return;
 
+    if (a->info >= x && a->info <= y) {
         imprimirIntervalo(a->esq, x, y);
+        printf("%d ", a->info);
         imprimirIntervalo(a->dir, x, y);
-    }
+    } else if (a->info < x)
+        imprimirIntervalo(a->dir, x, y);
+
+    else
+        imprimirIntervalo(a->esq, x, y);
 }
 
 void imprimirUniao (arvore *a, int x, int y)
 {
-    if (a != NULL)
-    {
-        if (a->info <= x || a->info >= y)
-            printf("%d ", a->info);
+    if (a == NULL)
+        return;
 
-        imprimirUniao(a->esq, x, y);
-        imprimirUniao(a->dir, x, y);
-    }
+    if (a->info <= x || a->info >= y)
+        printf("%d ", a->info);
+
+    imprimirUniao(a->esq, x, y);
+    imprimirUniao(a->dir, x, y);
 }
 
-void liberar(arvore *a)
+arvore *liberar(arvore *a)
 {
     if (a != NULL)
     {
-        liberar(a->esq);
-        liberar(a->dir);
+        a->esq = liberar(a->esq);
+        a->dir = liberar(a->dir);
         free(a);
     }
 
-    a = NULL;
+    return NULL;
 }
 
-int main()
-{
+int main(void) {
+    char entrada[20];
 
-    return 0;
+    printf("DIGITE O NOME DO ARQUIVO: ");
+    scanf("%s", entrada);
+
+    if (strstr(entrada, ".txt") == NULL)
+        strcat(entrada, ".txt");
+
+    FILE *arq = fopen(entrada, "r");
+
+    if (arq == NULL) {
+        fprintf(stderr, "ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO: '%s'.", entrada);
+        return -1;
+    }
+
+    arvore *a = NULL;
+
+    a = ler(a, arq);
+
+    fclose(arq);
+
+    if (!arvoreOrdenada(a)) {
+        fprintf(stderr, "ERRO: A ARVORE NAO ESTA ORDENADA.");
+        return -1;
+    }
+
+    if (!arvoreBalanceada(a)) {
+        printf("BALANCEANDO ARVORE...\n");
+        a = balancear(a);
+    }
+
+    int opt, elem, x, y;
+
+    while (true) {
+        printf("1. INSERIR UM ELEMENTO NA ARVORE\n");
+        printf("2. REMOVER UM ELEMENTO NA ARVORE\n");
+        printf("3. IMPRIMIR EM-ORDEM\n");
+        printf("4. IMPRIMIR PRE-ORDEM\n");
+        printf("5. IMPRIMIR POS-ORDEM\n");
+        printf("6. IMPRIMIR NOTACAO PARENTESES\n");
+        printf("7. ALTURA DA ARVORE\n");
+        printf("8. IMPRIMIR ELEMENTOS NO INTERVALO X <= ELEM <= Y\n");
+        printf("9. IMPRIMIR ELEMENTO NO INTERVALO X >= ELEM >= Y\n");
+        printf("10. SAIR\n");
+
+        scanf("%d", &opt);
+
+        printf("\n");
+
+        switch (opt) {
+            case 1:
+                printf("QUAL ELEMENTO DESEJA INSERIR?\n");
+                scanf("%d", &elem);
+                a = inserir(a, elem);
+                printf("ELEMENTO '%d' INSERIDO COM SUCESSO!\n", elem);
+                if (!arvoreBalanceada(a)) {
+                    printf("A ARVORE FOI DESBALANCEADA! BALANCEANDO...\n");
+                    a = balancear(a);
+                }
+                break;
+
+            case 2:
+                printf("QUAL ELEMENTO DESEJA REMOVER?\n");
+                scanf("%d", &elem);
+                if (existe(a, elem)) {
+                    a = remover(a, elem);
+                    printf("ELEMENTO '%d' REMOVIDO COM SUCESSO!\n", elem);
+
+                    if (!arvoreBalanceada(a)) {
+                        printf("A ARVORE FOI DESBALANCEADA! BALANCEANDO...\n");
+                        a = balancear(a);
+                    }
+                } else
+                    fprintf(stderr, "ERRO: ELEMENTO '%d' NAO ENCONTRADO.\n", elem);
+                break;
+
+            case 3:
+                emOrdem(a);
+                break;
+
+            case 4:
+                preOrdem(a);
+                break;
+
+            case 5:
+                posOrdem(a);
+                break;
+
+            case 6:
+                notacaoParenteses(a);
+                break;
+
+            case 7:
+                printf("A ARVORE TEM ALTURA '%d'\n", altura(a));
+                break;
+
+            case 8:
+                printf("QUAL INTERVALO DESEJA CONSULTAR?\n");
+                scanf("%d %d", &x, &y);
+                imprimirIntervalo(a, x, y);
+                break;
+
+            case 9:
+                printf("QUAL INTERVALO DESEJA CONSULTAR?\n");
+                scanf("%d %d", &x, &y);
+                imprimirUniao(a, x, y);
+                break;
+
+            default:
+                liberar(a);
+                return 0;
+        }
+
+        printf("\n");
+    }
 }

@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 typedef struct arvore
 {
@@ -39,89 +41,126 @@ arvore *ler(arvore *a, FILE *arq)
     return a;
 }
 
-int arvoreOrdenada(arvore *a, arvore *esq, arvore *dir)
+int menor(arvore *a, int m)
 {
-    if (a == NULL)
-        return 1;
+    if (a != NULL && a->esq != NULL && a->dir != NULL)
+    {
+        m = (m > a->esq->info) ? a->esq->info : m;
+        m = (m > a->dir->info) ? a->dir->info : m;
 
-    if (esq != NULL && a->info < esq->info)
-        return 0;
-
-    if (dir != NULL && a->info > dir->info)
-        return 0;
-
-    return arvoreOrdenada(a->esq, esq, a) && arvoreOrdenada(a->dir, a, dir);
+        m = menor(a->esq, m);
+        m = menor(a->dir, m);
+    }
+    return m;
 }
 
-arvore *inserir(arvore *a, int elemento)
+int maior(arvore *a, int m)
+{
+    if (a != NULL && a->esq != NULL && a->dir != NULL)
+    {
+        m = (m < a->esq->info) ? a->esq->info : m;
+        m = (m < a->dir->info) ? a->dir->info : m;
+
+        m = maior(a->esq, m);
+        m = maior(a->dir, m);
+    }
+    return m;
+}
+
+int altura(arvore *a)
+{
+    if (a == NULL)
+        return 0;
+
+    int he = altura(a->esq);
+    int hd = altura(a->dir);
+
+    if (he > hd)
+        return he + 1;
+
+    return hd + 1;
+}
+
+bool arvoreOrdenada(arvore *a)
+{
+    if (a == NULL || a->esq == NULL || a->dir == NULL)
+        return true;
+
+    if (maior(a->esq, a->esq->info) > a->info || menor(a->dir, a->dir->info) < a->info)
+        return false;
+
+    return arvoreOrdenada(a->esq) && arvoreOrdenada(a->dir);
+}
+
+arvore *inserir(arvore *a, int elem)
 {
     if (a == NULL)
     {
         a = (arvore *) malloc(sizeof(arvore));
-        a->info = elemento;
+        a->info = elem;
         a->esq = NULL;
         a->dir = NULL;
     }
 
-    else if (elemento < a->info)
-        a->esq = inserir(a->esq, elemento);
+    else if (elem < a->info)
+        a->esq = inserir(a->esq, elem);
 
     else
-        a->dir = inserir(a->dir, elemento);
+        a->dir = inserir(a->dir, elem);
 
     return a;
 }
 
-arvore *remover(arvore *a, int elemento)
-{
-    if (a != NULL)
-    {
-        if (a->info == elemento)
-        {
-            if (a->esq == NULL && a->dir == NULL)
-            {
-                free(a);
-                return NULL;
-            }
-
-            else if (a->esq == NULL || a->dir == NULL)
-            {
-                arvore *aux = !a->esq ? a->dir : a->esq;
-                free(a);
-                return aux;
-            }
-
-            else
-            {
-                arvore *m = a->esq;
-
-                while (m->dir != NULL)
-                    m = m->dir;
-
-                a->info = m->info;
-                a->esq = remover(a->esq, a->info);
-
-                return a;
-            }
-        }
-
-        else if (elemento < a->info)
-            a->esq = remover(a->esq, elemento);
-
-        else
-            a->dir = remover(a->dir, elemento);
-    }
-
-    return a;
-}
-
-int existe(arvore *a, int elem)
+arvore *remover(arvore *a, int elem)
 {
     if (a == NULL)
-        return 0;
+        return NULL;
 
     if (a->info == elem)
-        return 1;
+    {
+        if (a->esq == NULL && a->dir == NULL)
+        {
+            free(a);
+            return NULL;
+        }
+
+        else if (a->esq == NULL || a->dir == NULL)
+        {
+            arvore *aux = !a->esq ? a->dir : a->esq;
+            free(a);
+            return aux;
+        }
+
+        else
+        {
+            arvore *m = a->esq;
+
+            while (m->dir != NULL)
+                m = m->dir;
+
+            a->info = m->info;
+            a->esq = remover(a->esq, a->info);
+
+            return a;
+        }
+    }
+
+    else if (elem < a->info)
+        a->esq = remover(a->esq, elem);
+
+    else
+        a->dir = remover(a->dir, elem);
+
+    return a;
+}
+
+bool existe(arvore *a, int elem)
+{
+    if (a == NULL)
+        return false;
+
+    if (a->info == elem)
+        return true;
 
     return (a->info > elem) ? existe(a->esq, elem) : existe(a->dir, elem);
 }
@@ -173,69 +212,65 @@ void notacaoParenteses(arvore *a)
     printf(")");
 }
 
-int altura(arvore *a)
-{
-    if (a == NULL)
-        return 0;
-
-    int he = altura(a->esq);
-    int hd = altura(a->dir);
-
-    if (he > hd)
-        return he + 1;
-
-    return hd + 1;
-}
-
 void imprimirIntervalo(arvore *a, int x, int y)
 {
-    if (a != NULL)
-    {
-        if (a->info >= x && a->info <= y)
-            printf("%d ", a->info);
+    if (a == NULL)
+        return;
 
+    if (a->info >= x && a->info <= y)
+    {
         imprimirIntervalo(a->esq, x, y);
+        printf("%d ", a->info);
         imprimirIntervalo(a->dir, x, y);
     }
+
+    else if (a->info < x)
+        imprimirIntervalo(a->dir, x, y);
+
+    else
+        imprimirIntervalo(a->esq, x, y);
 }
 
 void imprimirUniao (arvore *a, int x, int y)
 {
-    if (a != NULL)
-    {
-        if (a->info <= x || a->info >= y)
-            printf("%d ", a->info);
+    if (a == NULL)
+        return;
 
-        imprimirUniao(a->esq, x, y);
-        imprimirUniao(a->dir, x, y);
-    }
+    if (a->info <= x || a->info >= y)
+        printf("%d ", a->info);
+
+    imprimirUniao(a->esq, x, y);
+    imprimirUniao(a->dir, x, y);
 }
 
-void liberar(arvore *a)
+arvore *liberar(arvore *a)
 {
     if (a != NULL)
     {
-        liberar(a->esq);
-        liberar(a->dir);
+        a->esq = liberar(a->esq);
+        a->dir = liberar(a->dir);
         free(a);
     }
 
-    a = NULL;
+    return NULL;
 }
 
 int main(void)
 {
     char entrada[20];
 
-    printf("Digite o nome do arquivo: ");
+    printf("DIGITE O NOME DO ARQUIVO: ");
     scanf("%s", entrada);
+
+    if(strstr(entrada, ".txt") == NULL)
+        strcat(entrada, ".txt");
 
     FILE *arq = fopen(entrada, "r");
 
     if (arq == NULL)
     {
-        printf("Nao foi possivel abrir o arquivo!\n");
-        exit(1);
+        fprintf(stderr, "ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO: '%s'.", entrada);
+        return -1;
     }
 
     arvore *a = NULL;
@@ -244,21 +279,27 @@ int main(void)
 
     fclose(arq);
 
-    int opt = 1, elem, x, y;
-
-    while (opt != 0)
+    if (!arvoreOrdenada(a))
     {
-        printf("1. TESTAR SE A ARVORE ESTA ORDENADA\n");
-        printf("2. INSERIR UM ELEMENTO NA ARVORE\n");
-        printf("3. REMOVER UM ELEMENTO NA ARVORE\n");
-        printf("4. IMPRIMIR EM-ORDEM\n");
-        printf("5. IMPRIMIR PRE-ORDEM\n");
-        printf("6. IMPRIMIR POS-ORDEM\n");
-        printf("7. IMPRIMIR NOTACAO PARENTESES\n");
-        printf("8. ALTURA DA ARVORE\n");
-        printf("9. IMPRIMIR ELEMENTOS NO INTERVALO X <= ELEM <= Y\n");
-        printf("10. IMPRIMIR ELEMENTO NO INTERVALO X >= ELEM >= Y\n");
-        printf("11. SAIR\n");
+        fprintf(stderr, "ERRO: A ARVORE NAO ESTA ORDENADA.");
+        liberar(a);
+        return -1;
+    }
+
+    int opt, elem, x, y;
+
+    while (true)
+    {
+        printf("1. INSERIR UM ELEMENTO NA ARVORE\n");
+        printf("2. REMOVER UM ELEMENTO NA ARVORE\n");
+        printf("3. IMPRIMIR EM-ORDEM\n");
+        printf("4. IMPRIMIR PRE-ORDEM\n");
+        printf("5. IMPRIMIR POS-ORDEM\n");
+        printf("6. IMPRIMIR NOTACAO PARENTESES\n");
+        printf("7. ALTURA DA ARVORE\n");
+        printf("8. IMPRIMIR ELEMENTOS NO INTERVALO X <= ELEM <= Y\n");
+        printf("9. IMPRIMIR ELEMENTO NO INTERVALO X >= ELEM >= Y\n");
+        printf("10. SAIR\n");
 
         scanf("%d", &opt);
 
@@ -267,74 +308,61 @@ int main(void)
         switch (opt)
         {
             case 1:
-                if (arvoreOrdenada(a, NULL, NULL))
-                    printf("A ARVORE ESTA ORDENADA!\n");
-                else
-                {
-                    printf("A ARVORE NAO ESTA ORDENADA!\n");
-                    return -1;
-                }
+                printf("QUAL ELEMENTO DESEJA INSERIR?\n");
+                scanf("%d", &elem);
+                a = inserir(a, elem);
+                printf("ELEMENTO '%d' INSERIDO COM SUCESSO!\n", elem);
                 break;
 
             case 2:
-                printf("QUAL ELEMENTO DESEJA INSERIR?\n");
-                scanf("%d", &elem);
-                inserir(a, elem);
-                printf("ELEMENTO %d INSERIDO COM SUCESSO!\n", elem);
-                break;
-
-            case 3:
                 printf("QUAL ELEMENTO DESEJA REMOVER?\n");
                 scanf("%d", &elem);
                 if (existe(a, elem))
                 {
-                    remover(a, elem);
-                    printf("ELEMENTO %d REMOVIDO COM SUCESSO!\n", elem);
+                    a = remover(a, elem);
+                    printf("ELEMENTO '%d' REMOVIDO COM SUCESSO!\n", elem);
                 }
                 else
-                    printf("ESTA ARVORE NAO CONTEM O ELEMENTO %d", elem);
+                    fprintf(stderr, "ERRO: ELEMENTO '%d' NAO ENCONTRADO.\n", elem);
                 break;
 
-            case 4:
+            case 3:
                 emOrdem(a);
                 break;
 
-            case 5:
+            case 4:
                 preOrdem(a);
                 break;
 
-            case 6:
+            case 5:
                 posOrdem(a);
                 break;
 
-            case 7:
+            case 6:
                 notacaoParenteses(a);
                 break;
 
-            case 8:
-                printf("A ARVORE TEM ALTURA %d\n", altura(a));
+            case 7:
+                printf("A ARVORE TEM ALTURA '%d'\n", altura(a));
                 break;
 
-            case 9:
+            case 8:
                 printf("QUAL INTERVALO DESEJA USAR CONSULTAR?\n");
                 scanf("%d %d", &x, &y);
                 imprimirIntervalo(a, x, y);
                 break;
 
-            case 10:
+            case 9:
                 printf("QUAL INTERVALO DESEJA USAR CONSULTAR?\n");
                 scanf("%d %d", &x, &y);
                 imprimirUniao(a, x, y);
                 break;
 
             default:
-                opt = 0;
+                liberar(a);
+                return 0;
         }
 
         printf("\n");
     }
-
-    liberar(a);
-
-    return 0;
 }

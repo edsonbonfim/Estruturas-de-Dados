@@ -11,4 +11,8 @@ stdio.h
 -
 stdlib.h
 -
+string.h
+-
+stdbool.h
+-
 

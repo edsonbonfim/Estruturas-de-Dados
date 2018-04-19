@@ -11,7 +11,32 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f2e9f15-c274-4016-8d7e-ab1193d0b142" name="Default" comment="" />
+    <list default="true" id="9f2e9f15-c274-4016-8d7e-ab1193d0b142" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/C.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDTrabalho3.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EDTrabalho3" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/EDTrabalho3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/arvoredesordenada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/arvoredesordenada.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/EDTrabalho4.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/EDTrabalho4.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/EDTrabalho4.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/EDTrabalho4.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EDTrabalho4/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../EDTrabalho4/main.c" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +47,45 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="828">
+              <caret line="187" column="14" selection-start-line="187" selection-start-column="14" selection-end-line="187" selection-end-column="14" />
+              <folding>
+                <element signature="e#110#128#0" expanded="true" />
+                <element signature="e#199#278#0" />
+                <element signature="e#288#652#0" />
+                <element signature="e#654#929#0" />
+                <element signature="e#931#1206#0" />
+                <element signature="e#1208#1390#0" />
+                <element signature="e#1396#1675#0" />
+                <element signature="e#1962#2285#0" />
+                <element signature="e#2287#3054#0" />
+                <element signature="e#3965#4161#0" />
+                <element signature="e#4163#4303#0" />
+                <element signature="e#4305#4448#0" />
+                <element signature="e#4450#4593#0" />
+                <element signature="e#4595#4832#0" />
+                <element signature="e#4834#5204#0" />
+                <element signature="e#5206#5427#0" />
+                <element signature="e#5429#5593#0" />
+                <element signature="e#5289#8075#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>existe</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -41,16 +104,33 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1" />
     <option name="width" value="1368" />
     <option name="height" value="734" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="EDTrabalho3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EDTrabalho3" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Source Files">
           <expand>
@@ -71,23 +151,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="EDTrabalho3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EDTrabalho3" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="font&#9;ACTION&#9;EditorDecreaseFontSize" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EDTrabalho2.c" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
@@ -141,25 +210,30 @@
       <workItem from="1523580998219" duration="1020000" />
       <workItem from="1523645227648" duration="3595000" />
       <workItem from="1523731630705" duration="397000" />
+      <workItem from="1524147141956" duration="7855000" />
+      <workItem from="1524167567801" duration="3735000" />
+      <workItem from="1524172758150" duration="31000" />
+      <workItem from="1524178369056" duration="234000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26793000" />
+    <option name="totallyTimeSpent" value="38648000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="734" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4907563" visible="true" weight="0.24553572" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4841772" visible="true" weight="0.24524158" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="CMake" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info x="295" y="117" width="808" height="459" id="Run" order="3" type="FLOATING" weight="0.5512445" />
-      <window_info id="Structure" order="1" sideWeight="0.5092437" side_tool="true" visible="true" weight="0.24553572" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.328594" />
+      <window_info x="282" y="120" width="808" height="459" id="Run" order="3" type="FLOATING" weight="0.5512445" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info id="Structure" order="1" sideWeight="0.51582277" side_tool="true" visible="true" weight="0.24524158" />
       <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4142395" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.34789917" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
@@ -178,39 +252,58 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>176</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="12" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#110#128#0" expanded="true" />
+            <element signature="e#199#278#0" />
+            <element signature="e#288#652#0" />
+            <element signature="e#654#929#0" />
+            <element signature="e#931#1206#0" />
+            <element signature="e#1208#1390#0" />
+            <element signature="e#1396#1675#0" />
+            <element signature="e#1962#2285#0" />
+            <element signature="e#2287#3054#0" />
+            <element signature="e#3965#4161#0" />
+            <element signature="e#4163#4303#0" />
+            <element signature="e#4305#4448#0" />
+            <element signature="e#4450#4593#0" />
+            <element signature="e#4595#4832#0" />
+            <element signature="e#4834#5204#0" />
+            <element signature="e#5206#5427#0" />
+            <element signature="e#5429#5593#0" />
+            <element signature="e#5289#8075#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1248">
           <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#158#237#0" />
-            <element signature="e#247#611#0" />
-            <element signature="e#915#1258#0" />
-            <element signature="e#1260#2145#0" />
-            <element signature="e#2147#2339#0" />
-            <element signature="e#2341#2481#0" />
-            <element signature="e#2483#2626#0" />
-            <element signature="e#2628#2771#0" />
-            <element signature="e#2773#3010#0" />
-            <element signature="e#3012#3194#0" />
-            <element signature="e#3196#3439#0" />
-            <element signature="e#3441#3673#0" />
-            <element signature="e#3675#3815#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -225,21 +318,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1352">
           <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-          <folding>
-            <element signature="e#158#237#0" />
-            <element signature="e#247#611#0" />
-            <element signature="e#915#1258#0" />
-            <element signature="e#1260#2145#0" />
-            <element signature="e#2147#2339#0" />
-            <element signature="e#2341#2481#0" />
-            <element signature="e#2483#2626#0" />
-            <element signature="e#2628#2771#0" />
-            <element signature="e#2773#3010#0" />
-            <element signature="e#3012#3194#0" />
-            <element signature="e#3196#3439#0" />
-            <element signature="e#3441#3673#0" />
-            <element signature="e#3675#3815#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -352,32 +430,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#158#237#0" />
-            <element signature="e#247#611#0" />
-            <element signature="e#915#1258#0" />
-            <element signature="e#1260#2145#0" />
-            <element signature="e#2147#2339#0" />
-            <element signature="e#2341#2481#0" />
-            <element signature="e#2483#2626#0" />
-            <element signature="e#2628#2771#0" />
-            <element signature="e#2773#3010#0" />
-            <element signature="e#3012#3194#0" />
-            <element signature="e#3196#3439#0" />
-            <element signature="e#3441#3673#0" />
-            <element signature="e#3675#3815#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/arvore.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../PAQ/PAQTrabalho1/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="40" column="4" lean-forward="true" selection-start-line="40" selection-start-column="4" selection-end-line="47" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/5/include/stdbool.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="51" column="41" lean-forward="true" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="187" column="14" selection-start-line="187" selection-start-column="14" selection-end-line="187" selection-end-column="14" />
+          <folding>
+            <element signature="e#110#128#0" expanded="true" />
+            <element signature="e#199#278#0" />
+            <element signature="e#288#652#0" />
+            <element signature="e#654#929#0" />
+            <element signature="e#931#1206#0" />
+            <element signature="e#1208#1390#0" />
+            <element signature="e#1396#1675#0" />
+            <element signature="e#1962#2285#0" />
+            <element signature="e#2287#3054#0" />
+            <element signature="e#3965#4161#0" />
+            <element signature="e#4163#4303#0" />
+            <element signature="e#4305#4448#0" />
+            <element signature="e#4450#4593#0" />
+            <element signature="e#4595#4832#0" />
+            <element signature="e#4834#5204#0" />
+            <element signature="e#5206#5427#0" />
+            <element signature="e#5429#5593#0" />
+            <element signature="e#5289#8075#0" />
+          </folding>
         </state>
       </provider>
     </entry>
