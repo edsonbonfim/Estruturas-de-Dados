@@ -41,8 +41,10 @@ arvore *ler(arvore *a, FILE *arq)
     return a;
 }
 
-int menor(arvore *a, int m) {
-    if (a != NULL && a->esq != NULL && a->dir != NULL) {
+int menor(arvore *a, int m)
+{
+    if (a != NULL && a->esq != NULL && a->dir != NULL)
+    {
         m = (m > a->esq->info) ? a->esq->info : m;
         m = (m > a->dir->info) ? a->dir->info : m;
 
@@ -52,8 +54,10 @@ int menor(arvore *a, int m) {
     return m;
 }
 
-int maior(arvore *a, int m) {
-    if (a != NULL && a->esq != NULL && a->dir != NULL) {
+int maior(arvore *a, int m)
+{
+    if (a != NULL && a->esq != NULL && a->dir != NULL)
+    {
         m = (m < a->esq->info) ? a->esq->info : m;
         m = (m < a->dir->info) ? a->dir->info : m;
 
@@ -77,7 +81,8 @@ int altura(arvore *a)
     return hd + 1;
 }
 
-bool arvoreOrdenada(arvore *a) {
+bool arvoreOrdenada(arvore *a)
+{
     if (a == NULL || a->esq == NULL || a->dir == NULL)
         return true;
 
@@ -87,7 +92,8 @@ bool arvoreOrdenada(arvore *a) {
     return arvoreOrdenada(a->esq) && arvoreOrdenada(a->dir);
 }
 
-bool arvoreBalanceada(arvore *a) {
+bool arvoreBalanceada(arvore *a)
+{
     if (a == NULL || a->esq == NULL || a->dir == NULL)
         return true;
 
@@ -107,7 +113,9 @@ arvore *inserir(arvore *a, int elem)
         a->info = elem;
         a->esq = NULL;
         a->dir = NULL;
-    } else if (elem < a->info)
+    }
+
+    else if (elem < a->info)
         a->esq = inserir(a->esq, elem);
 
     else
@@ -116,19 +124,28 @@ arvore *inserir(arvore *a, int elem)
     return a;
 }
 
-arvore *remover(arvore *a, int elem) {
+arvore *remover(arvore *a, int elem)
+{
     if (a == NULL)
         return NULL;
 
-    if (a->info == elem) {
-        if (a->esq == NULL && a->dir == NULL) {
+    if (a->info == elem)
+    {
+        if (a->esq == NULL && a->dir == NULL)
+        {
             free(a);
             return NULL;
-        } else if (a->esq == NULL || a->dir == NULL) {
+        }
+
+        else if (a->esq == NULL || a->dir == NULL)
+        {
             arvore *aux = !a->esq ? a->dir : a->esq;
             free(a);
             return aux;
-        } else {
+        }
+
+        else
+        {
             arvore *m = a->esq;
 
             while (m->dir != NULL)
@@ -139,7 +156,9 @@ arvore *remover(arvore *a, int elem) {
 
             return a;
         }
-    } else if (elem < a->info)
+    }
+
+    else if (elem < a->info)
         a->esq = remover(a->esq, elem);
 
     else
@@ -162,7 +181,8 @@ arvore *balancear(arvore *a)
     hd = altura(a->dir);
 
     // Desbalanceado para a direita
-    if (hd - he > 1) {
+    if (hd - he > 1)
+    {
         int x;
         arvore *aux = a->dir;
 
@@ -178,8 +198,9 @@ arvore *balancear(arvore *a)
         a = balancear(a);
     }
 
-        // Desabalanceado para a esquerda
-    else if (he - hd > 1) {
+    // Desabalanceado para a esquerda
+    else if (he - hd > 1)
+    {
         int x;
         arvore *aux = a->esq;
 
@@ -261,11 +282,14 @@ void imprimirIntervalo(arvore *a, int x, int y)
     if (a == NULL)
         return;
 
-    if (a->info >= x && a->info <= y) {
+    if (a->info >= x && a->info <= y)
+    {
         imprimirIntervalo(a->esq, x, y);
         printf("%d ", a->info);
         imprimirIntervalo(a->dir, x, y);
-    } else if (a->info < x)
+    }
+
+    else if (a->info < x)
         imprimirIntervalo(a->dir, x, y);
 
     else
@@ -296,7 +320,8 @@ arvore *liberar(arvore *a)
     return NULL;
 }
 
-int main(void) {
+int main(void)
+{
     char entrada[20];
 
     printf("DIGITE O NOME DO ARQUIVO: ");
@@ -307,7 +332,8 @@ int main(void) {
 
     FILE *arq = fopen(entrada, "r");
 
-    if (arq == NULL) {
+    if (arq == NULL)
+    {
         fprintf(stderr, "ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO: '%s'.", entrada);
         return -1;
     }
@@ -318,19 +344,22 @@ int main(void) {
 
     fclose(arq);
 
-    if (!arvoreOrdenada(a)) {
+    if (!arvoreOrdenada(a))
+    {
         fprintf(stderr, "ERRO: A ARVORE NAO ESTA ORDENADA.");
         return -1;
     }
 
-    if (!arvoreBalanceada(a)) {
+    if (!arvoreBalanceada(a))
+    {
         printf("BALANCEANDO ARVORE...\n");
         a = balancear(a);
     }
 
     int opt, elem, x, y;
 
-    while (true) {
+    while (true)
+    {
         printf("1. INSERIR UM ELEMENTO NA ARVORE\n");
         printf("2. REMOVER UM ELEMENTO NA ARVORE\n");
         printf("3. IMPRIMIR EM-ORDEM\n");
@@ -346,13 +375,15 @@ int main(void) {
 
         printf("\n");
 
-        switch (opt) {
+        switch (opt)
+        {
             case 1:
                 printf("QUAL ELEMENTO DESEJA INSERIR?\n");
                 scanf("%d", &elem);
                 a = inserir(a, elem);
                 printf("ELEMENTO '%d' INSERIDO COM SUCESSO!\n", elem);
-                if (!arvoreBalanceada(a)) {
+                if (!arvoreBalanceada(a))
+                {
                     printf("A ARVORE FOI DESBALANCEADA! BALANCEANDO...\n");
                     a = balancear(a);
                 }
@@ -361,15 +392,18 @@ int main(void) {
             case 2:
                 printf("QUAL ELEMENTO DESEJA REMOVER?\n");
                 scanf("%d", &elem);
-                if (existe(a, elem)) {
+                if (existe(a, elem))
+                {
                     a = remover(a, elem);
                     printf("ELEMENTO '%d' REMOVIDO COM SUCESSO!\n", elem);
 
-                    if (!arvoreBalanceada(a)) {
+                    if (!arvoreBalanceada(a))
+                    {
                         printf("A ARVORE FOI DESBALANCEADA! BALANCEANDO...\n");
                         a = balancear(a);
                     }
-                } else
+                }
+                else
                     fprintf(stderr, "ERRO: ELEMENTO '%d' NAO ENCONTRADO.\n", elem);
                 break;
 
