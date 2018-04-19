@@ -1,3 +1,0 @@
-/home/edsononildo/Desktop/ED/EDTrabalho4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/edsononildo/Desktop/ED/EDTrabalho4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/edsononildo/Desktop/ED/EDTrabalho4/cmake-build-debug/CMakeFiles/EDTrabalho4.dir
