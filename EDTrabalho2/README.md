@@ -9,7 +9,7 @@ Segundo trabalho para a disciplina de Estrutura de Dados:
     * em ordem
     * pós ordem
     * em largura (por niveis)
-* Na notação de parênteses usada ao ler de um arquivo
+    * Na notação de parênteses usada ao ler de um arquivo
 * Verificar se um elemento existe na árvore
 * Calcular a altura de uma árvore
 * Contar o número de ocorrências de um determinado elemento em uma árvore
