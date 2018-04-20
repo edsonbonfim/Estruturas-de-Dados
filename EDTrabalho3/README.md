@@ -1,7 +1,7 @@
 Árvore Binária de Busca
 =======================
 
-Terceiro trabalho para a disciplina de Estrutura de Dados:
+Terceiro trabalho para a disciplina de Estruturas de Dados:
 
 * Ler arvore de um arquivo e verificar se esta ordenada
 * Inserir um elemento na arvore

@@ -1,7 +1,7 @@
 Árvore Binária
 ==============
 
-Segundo trabalho para a disciplina de Estrutura de Dados:
+Segundo trabalho para a disciplina de Estruturas de Dados:
 
 * Ler árvore de um arquivo (precisa fornecer o nome do arquivo para o caso de querer ler árvores diferentes)
 * Imprimir árvore das seguintes maneiras (criar um submenu):

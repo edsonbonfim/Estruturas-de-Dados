@@ -1,7 +1,7 @@
 Árvore AVL
 ==========
 
-Quarto trabalho para a disciplina de Estrutura de Dados:
+Quarto trabalho para a disciplina de Estruturas de Dados:
 
 Repetir o trabalho de [arvore binaria de busca](../EDTrabalho3) para arvore avl fazendo as seguintes modificacoes:
 1. Ao ler a arvore do arquivo, verificar se a arvore esta ordenada e tambem balanceada
