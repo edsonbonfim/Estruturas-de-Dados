@@ -41,32 +41,6 @@ arvore *ler(arvore *a, FILE *arq)
     return a;
 }
 
-int menor(arvore *a, int m)
-{
-    if (a != NULL && a->esq != NULL && a->dir != NULL)
-    {
-        m = (m > a->esq->info) ? a->esq->info : m;
-        m = (m > a->dir->info) ? a->dir->info : m;
-
-        m = menor(a->esq, m);
-        m = menor(a->dir, m);
-    }
-    return m;
-}
-
-int maior(arvore *a, int m)
-{
-    if (a != NULL && a->esq != NULL && a->dir != NULL)
-    {
-        m = (m < a->esq->info) ? a->esq->info : m;
-        m = (m < a->dir->info) ? a->dir->info : m;
-
-        m = maior(a->esq, m);
-        m = maior(a->dir, m);
-    }
-    return m;
-}
-
 int altura(arvore *a)
 {
     if (a == NULL)
@@ -81,12 +55,53 @@ int altura(arvore *a)
     return hd + 1;
 }
 
+int menor(arvore *a, int m)
+{
+    if (a != NULL)
+    {
+        if (a->esq != NULL)
+        {
+            m = (m > a->esq->info) ? a->esq->info : m;
+            m = menor(a->esq, m);
+        }
+
+        if (a->dir != NULL)
+        {
+            m = (m > a->dir->info) ? a->dir->info : m;
+            m = menor(a->dir, m);
+        }
+    }
+    return m;
+}
+
+int maior(arvore *a, int m)
+{
+    if (a != NULL)
+    {
+        if (a->esq != NULL)
+        {
+            m = (m < a->esq->info) ? a->esq->info : m;
+            m = maior(a->esq, m);
+        }
+
+        if (a->dir != NULL)
+        {
+            m = (m < a->dir->info) ? a->dir->info : m;
+            m = maior(a->dir, m);
+        }
+    }
+    return m;
+}
+
 bool arvoreOrdenada(arvore *a)
 {
-    if (a == NULL || a->esq == NULL || a->dir == NULL)
+    if (a == NULL)
         return true;
 
-    if (maior(a->esq, a->esq->info) > a->info || menor(a->dir, a->dir->info) < a->info)
+    if (a->esq != NULL && maior(a->esq, a->esq->info) > a->info)
+        return false;
+
+    if (a->dir != NULL && menor(a->dir, a->dir->info) < a->info)
         return false;
 
     return arvoreOrdenada(a->esq) && arvoreOrdenada(a->dir);
