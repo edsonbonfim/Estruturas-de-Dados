@@ -1,5 +1,5 @@
-Árvore Binária Geral
-====================
+Árvore Geral
+============
 
 * Árvore binária que simula qualquer outra árvore
 * Duas direções: filho e irmão

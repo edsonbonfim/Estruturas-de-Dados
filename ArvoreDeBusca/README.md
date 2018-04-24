@@ -1,5 +1,5 @@
-Árvore Binária de Busca
-=======================
+Árvore de Busca
+===============
 
 Terceiro trabalho para a disciplina de Estruturas de Dados:
 

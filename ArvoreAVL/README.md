@@ -3,7 +3,7 @@
 
 Quarto trabalho para a disciplina de Estruturas de Dados:
 
-Repetir o trabalho de [arvore binaria de busca](../EDTrabalho3) para arvore avl fazendo as seguintes modificacoes:
+Repetir o trabalho de [arvore binaria de busca](../ArvoreDeBusca) para arvore avl fazendo as seguintes modificacoes:
 1. Ao ler a arvore do arquivo, verificar se a arvore esta ordenada e tambem balanceada
 2. Ao inserir ou remover um elemento, verificar se a arvore desbalanceou. Se a arvore desbalanceou, uma mensagem de arvore desbalanceada deve ser escrita na tela e o algoritmo de balanceamento deve ser executado.
 
