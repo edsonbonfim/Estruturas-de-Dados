@@ -130,33 +130,13 @@ arvore *inserir(arvore *a, int x, int y)
 
 int nivelDoNo(arvore *a, int elem, int cont)
 {
-    int t1,t2;
-
     if (a == NULL)
-    {
         return 0;
-    }
 
-    else
-    {
-        if (a->info == elem)
-        {
-            return cont;
-        }
-        else
-        {
-            t1 = nivelDoNo(a->filho, elem, cont+1);
-            t2 = nivelDoNo(a->irmao, elem, cont);
-            if (t1 == 0 || t2 == 0)
-            {
-                return t1 + t2;
-            }
-            else
-            {
-                return t1;
-            }
-        }
-    }
+    if (a->info == elem)
+        return cont;
+
+    return nivelDoNo(a->filho, elem, cont+1) + nivelDoNo(a->irmao, elem, cont);
 }
 
 //Imprimir Pre Ordem
