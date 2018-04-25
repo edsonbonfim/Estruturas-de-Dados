@@ -82,17 +82,13 @@ int contarFolhas (arvore *a)
 //Verificar se um no existe na arvore
 bool existe(arvore *a, int num)
 {
-    if (a != NULL)
-    {
-        if (a->info == num)
-            return true;
-        else
-        {
-            return existe(a->filho, num) && existe(a->irmao, num);
-        }
-    }
+    if (a == NULL)
+        return false;
 
-    return false;
+    if (a->info == num)
+        return true;
+
+    return existe(a->filho, num) && existe(a->irmao, num);
 }
 
 arvore *inserir(arvore *a, int x, int y)
@@ -139,39 +135,6 @@ int nivelDoNo(arvore *a, int elem, int cont)
     return nivelDoNo(a->filho, elem, cont+1) + nivelDoNo(a->irmao, elem, cont);
 }
 
-//Imprimir Pre Ordem
-void preOrdem(arvore *a)
-{
-    if (a != NULL)
-    {
-        printf("%d ", a->info);
-        preOrdem(a->filho);
-        preOrdem(a->irmao);
-    }
-}
-
-//Imprimir Em Ordem
-void emOrdem(arvore *a)
-{
-    if (a != NULL)
-    {
-        emOrdem(a->filho);
-        printf("%d ", a->info);
-        emOrdem(a->irmao);
-    }
-}
-
-//Imprimir Pos Ordem
-void posOrdem(arvore *a)
-{
-    if (a != NULL)
-    {
-        posOrdem(a->filho);
-        posOrdem(a->irmao);
-        printf("%d ", a->info);
-    }
-}
-
 //Imprimir em Notacao de Parenteses
 void imprimirNotacao(arvore *a)
 {
@@ -192,16 +155,18 @@ void imprimirNotacao(arvore *a)
 //Imprimir Um Nivel da arvore
 void imprimirNivel(arvore *a, int nivel, int cont)
 {
-    if (a != NULL)
+    if (a == NULL)
+        return;
+
+    if (cont == nivel)
     {
-        if (cont == nivel)
-        {
-            printf("%d ", a->info);
-            imprimirNivel(a->irmao, nivel, cont);
-        } else{
-            imprimirNivel(a->filho, nivel, cont+1);
-            imprimirNivel(a->irmao, nivel, cont);
-        }
+        printf("%d ", a->info);
+        imprimirNivel(a->irmao, nivel, cont);
+    }
+    else
+    {
+        imprimirNivel(a->filho, nivel, cont+1);
+        imprimirNivel(a->irmao, nivel, cont);
     }
 }
 
