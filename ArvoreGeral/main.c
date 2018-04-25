@@ -1,7 +1,15 @@
+/**
+ * Estruturas de Dados
+ * Trabalho 4 (Arvore Geral)
+ *
+ * Edson Onildo
+ * Isabela Carvalho
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
+#include <stdbool.h>
 
 //Estrutura da arvore geral
 typedef struct arvore
@@ -11,8 +19,8 @@ typedef struct arvore
     struct arvore *irmao;
 } arvore;
 
-//Criar arvore
-arvore *criar(arvore *a, FILE *arq)
+//Le arvore do arquivo
+arvore *ler(arvore *a, FILE *arq)
 {
     int num;
     char ch;
@@ -24,13 +32,15 @@ arvore *criar(arvore *a, FILE *arq)
         a = NULL;
     else
     {
-        a = (arvore*) malloc(sizeof(arvore));
+        a = (arvore *) malloc(sizeof(arvore));
         a->info = num;
-        a->filho = criar(a->filho, arq);
-        a->irmao = criar(a->irmao, arq);
+        a->filho = ler(a->filho, arq);
+        a->irmao = ler(a->irmao, arq);
     }
 
     fscanf(arq, "%c", &ch);
+
+    return a;
 }
 
 //Altura da arvore
@@ -182,7 +192,6 @@ void posOrdem(arvore *a)
     }
 }
 
-
 //Imprimir em Notacao de Parenteses
 void imprimirNotacao(arvore *a)
 {
@@ -192,7 +201,7 @@ void imprimirNotacao(arvore *a)
         printf("-1");
     else
     {
-        printf("%d ", a->info);
+        printf("%d", a->info);
         imprimirNotacao(a->filho);
         imprimirNotacao(a->irmao);
     }
@@ -208,10 +217,10 @@ void imprimirNivel(arvore *a, int nivel, int cont)
         if (cont == nivel)
         {
             printf("%d ", a->info);
-            imprimirNivel(a->irmao, nivel, cont+1);
+            imprimirNivel(a->irmao, nivel, cont);
         } else{
             imprimirNivel(a->filho, nivel, cont+1);
-            imprimirNivel(a->irmao, nivel, cont+1);
+            imprimirNivel(a->irmao, nivel, cont);
         }
     }
 }
@@ -219,9 +228,23 @@ void imprimirNivel(arvore *a, int nivel, int cont)
 //Imprimir a arvore em Largura
 void imprimirLargura(arvore *a, int h)
 {
-    int i;
-    for (i =0; i<h; i++)
+    for (int i = 1; i <= h; i++)
+    {
         imprimirNivel(a, i, 1);
+        printf("\n");
+    }
+}
+
+arvore *liberar(arvore *a)
+{
+    if (a != NULL)
+    {
+        a->irmao = liberar(a->irmao);
+        a->filho = liberar(a->filho);
+        free(a);
+    }
+
+    return NULL;
 }
 
 //Imprimir um No Interno
@@ -257,7 +280,7 @@ int main(void)
 {
     char entrada[20];
 
-    printf("Digite o nome do arquivo: ");
+    printf("DIGITE O NOME DO ARQUIVO: ");
     scanf("%s", entrada);
 
     if (!strstr(entrada, ".txt"))
@@ -269,63 +292,63 @@ int main(void)
 
     if (arq == NULL)
     {
-        printf("Nao foi possivel abrir o arquivo!\n");
-        exit(1);
+        fprintf(stderr, "ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO '%s'.", entrada);
+        return EXIT_FAILURE;
     }
 
-    arvore *a = criar(a, arq);
+    arvore *a = NULL;
 
-    if (a != NULL)
+    a = ler(a, arq);
+
+    fclose(arq);
+
+    int opcao, elem, x, y;
+
+    while (true)
     {
-        int opcao, elem, x, y;
-
         menu();
-
         scanf("%d", &opcao);
 
-        while (1)
+        printf("\n");
+
+        switch (opcao)
         {
-            switch (opcao)
-            {
-                case 1:
-                    imprimirNotacao(a);
-                    break;
+            case 1:
+                imprimirNotacao(a);
+                break;
 
-                case 2:
-                    imprimirLargura(a, altura(a));
-                    break;
+            case 2:
+                imprimirLargura(a, altura(a));
+                break;
 
-                case 3:
-                    imprimirNoInterno(a);
-                    break;
+            case 3:
+                imprimirNoInterno(a);
+                break;
 
-                case 4:
-                    printf("Digite um elemento: ");
-                    scanf("%d", &elem);
-                    nivelDoNo(a, elem, 1);
-                    break;
+            case 4:
+                printf("Digite um elemento: ");
+                scanf("%d", &elem);
+                nivelDoNo(a, elem, 1);
+                break;
 
-                case 5:
-                    printf("A Arvore tem altura: %d", altura(a));
-                    break;
+            case 5:
+                printf("A Arvore tem altura: %d", altura(a));
+                break;
 
-                case 6:
-                    printf("A Arvore possui %d folhas\n", contarFolhas(a));
-                    break;
+            case 6:
+                printf("A Arvore possui %d folhas\n", contarFolhas(a));
+                break;
 
-                case 7:
-                    printf("Digite um elemento para ser inserido: ");
-                    scanf("%d", &x);
-                    printf("Digite o no y: ");
-                    scanf("%d", &y);
+            case 7:
+                printf("Digite um elemento para ser inserido: ");
+                scanf("%d", &x);
+                printf("Digite o no y: ");
+                scanf("%d", &y);
 
-                default:
-                    exit(1);
-            }
+            default:
+                liberar(a);
+                return EXIT_SUCCESS;
         }
-    }
-    else
-    {
-        exit(1);
+        printf("\n\n");
     }
 }
