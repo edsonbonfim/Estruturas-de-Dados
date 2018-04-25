@@ -63,20 +63,12 @@ int altura(arvore *a)
 //Conta as folhas da arvore
 int contarFolhas (arvore *a)
 {
-    static int cont = 0;
+    if (a == NULL)
+        return 0;
 
-    if (a != NULL)
-    {
-        if (a->filho == NULL)
-        {
-            cont++;
-        }
-        else
-        {
-            contarFolhas(a->filho);
-            contarFolhas(a->irmao);
-        }
-    }
+    int cont = contarFolhas(a->filho) + contarFolhas(a->irmao);
+
+    return (a->filho == NULL) ? 1 + cont : cont;
 }
 
 //Verificar se um no existe na arvore
