@@ -58,7 +58,7 @@ struct fila
 
 Fila inicializar(void)
 {
-    Fila *f = (Fila) malloc(sizeof(struct fila));
+    Fila f = (Fila) malloc(sizeof(struct fila));
     f->topo = 0;
     return f;
 }
@@ -66,6 +66,7 @@ Fila inicializar(void)
 Fila destruir(Fila f)
 {
     free(f);
+    return NULL;
 }
 
 int vazia(Fila f)
