@@ -89,27 +89,16 @@ arvore *inserir(arvore *a, int x, int y)
     {
         if (a->info == y)
         {
-            if (a->filho == NULL)
-            {
-                a->filho = (arvore *) malloc(sizeof(arvore));
-                a->filho->info = x;
-                a->filho->filho = NULL;
-                a->filho->irmao = NULL;
-            }
-
-            else
-            {
-                arvore *aux = (arvore *) malloc(sizeof(arvore));
-                aux->info = x;
-                aux->filho = NULL;
-                aux->irmao = a->irmao;
-                a = aux;
-            }
+            arvore *filho = a->filho;
+            a->filho = (arvore *) malloc(sizeof(arvore));
+            a->filho->info = x;
+            a->filho->filho = NULL;
+            a->filho->irmao = (filho != NULL) ? filho : NULL;
         }
-
         else
         {
-            a = inserir(a, x, y);
+            a->filho = inserir(a->filho, x, y);
+            a->irmao = inserir(a->irmao, x, y);
         }
     }
 
@@ -277,6 +266,9 @@ int main(void)
                 scanf("%d", &x);
                 printf("Digite o no y: ");
                 scanf("%d", &y);
+                a = inserir(a, x, y);
+                fflush(stdin);
+                break;
 
             default:
                 liberar(a);
