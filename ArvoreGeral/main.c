@@ -253,14 +253,10 @@ void imprimirNoInterno(arvore *a)
     if (a != NULL)
     {
         if (a->filho != NULL)
-        {
             printf("%d ", a->info);
-        }
-        else
-        {
-            imprimirNoInterno(a->filho);
-            imprimirNoInterno(a->irmao);
-        }
+
+        imprimirNoInterno(a->filho);
+        imprimirNoInterno(a->irmao);
     }
 }
 
