@@ -188,14 +188,14 @@ void imprimirNoInterno(arvore *a)
 
 void menu()
 {
-    printf("Digite a opcao desejada: \n");
-    printf("\n1 - Imprimir em Notacao de Parenteses\n");
-    printf("2 - Imprimir em Largura\n");
-    printf("3 - Imprimir os nos internos\n");
-    printf("4 - Imprimir o nivel de um no\n");
-    printf("5 - Altura da Arvore\n");
-    printf("6 - Numero de Folhas\n");
-    printf("7 - Inserir um no x como filho do no y\n");
+    printf("DIGITE A OPCAO DESEJADA: \n\n");
+    printf("1. IMPRIMIR EM NOTACAO DE PARENTESES\n");
+    printf("2. IMPRIMIR EM LARGURA\n");
+    printf("3. IMPRIMIR OS NOS INTERNOS\n");
+    printf("4. IMPRIMIR O NIVEL DE UM NO\n");
+    printf("5. ALTURA DA ARVORE\n");
+    printf("6. NUMERO DE FOLHAS\n");
+    printf("7. INSERIR UM NO X COMO FILHO DO NO Y\n");
 }
 
 int main(void)
@@ -248,7 +248,7 @@ int main(void)
                 break;
 
             case 4:
-                printf("Digite um elemento: ");
+                printf("DIGITE UM ELEMENTO: ");
                 scanf("%d", &elem);
                 printf("O ELEMENTO '%d' ESTA NO NIVEL '%d'.", elem, nivelDoNo(a, elem, 1));
                 break;
