@@ -44,8 +44,8 @@ void imprimir(Fila f);
 ```c
 // fila.c
 
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "fila.h"
 
 #define N 100
@@ -107,8 +107,8 @@ void imprimir(Fila f)
 ```c
 // main.c
 
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "fila.h"
 
 int main(void)
@@ -122,7 +122,7 @@ int main(void)
     x = remover(f);
     printf("%d ", x);
     
-    f = destruir(f);
+    destruir(f);
     
     return EXIT_SUCCESS;
 }
