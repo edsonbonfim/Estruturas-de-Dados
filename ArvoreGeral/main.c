@@ -80,7 +80,7 @@ bool existe(arvore *a, int num)
     if (a->info == num)
         return true;
 
-    return existe(a->filho, num) && existe(a->irmao, num);
+    return existe(a->filho, num) || existe(a->irmao, num);
 }
 
 arvore *inserir(arvore *a, int x, int y)
@@ -250,30 +250,33 @@ int main(void)
             case 4:
                 printf("Digite um elemento: ");
                 scanf("%d", &elem);
-                printf("O ELEMENTO '%d' ESTA NO NIVEL '%d'", elem, nivelDoNo(a, elem, 1));
+                printf("O ELEMENTO '%d' ESTA NO NIVEL '%d'.", elem, nivelDoNo(a, elem, 1));
                 break;
 
             case 5:
-                printf("A Arvore tem altura: %d", altura(a));
+                printf("A ARVORE TEM ALTURA '%d'.", altura(a));
                 break;
 
             case 6:
-                printf("A Arvore possui %d folhas\n", contarFolhas(a));
+                printf("A ARVORE POSSUI '%d' FOLHAS.", contarFolhas(a));
                 break;
 
             case 7:
-                printf("Digite um elemento para ser inserido: ");
+                printf("DIGITE UM ELEMENTO PARA SER INSERIDO: ");
                 scanf("%d", &x);
-                printf("Digite o no y: ");
+                printf("DIGITE O NO Y: ");
                 scanf("%d", &y);
-                a = inserir(a, x, y);
-                fflush(stdin);
+                if (existe(a, y))
+                    a = inserir(a, x, y);
+                else
+                    fprintf(stderr, "ERRO: ELEMENTO '%d' NAO ENCONTRADO.", y);
                 break;
 
             default:
                 liberar(a);
                 return EXIT_SUCCESS;
         }
+        fflush(stdin);
         printf("\n\n");
     }
 }
