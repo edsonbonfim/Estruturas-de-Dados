@@ -324,7 +324,7 @@ int main(void)
             case 4:
                 printf("Digite um elemento: ");
                 scanf("%d", &elem);
-                nivelDoNo(a, elem, 1);
+                printf("O ELEMENTO '%d' ESTA NO NIVEL '%d'", elem, nivelDoNo(a, elem, 1));
                 break;
 
             case 5:
