@@ -11,7 +11,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-//Estrutura da arvore geral
 typedef struct arvore
 {
     int info;
@@ -19,7 +18,6 @@ typedef struct arvore
     struct arvore *irmao;
 } arvore;
 
-//Le arvore do arquivo
 arvore *ler(arvore *a, FILE *arq)
 {
     int num;
@@ -43,7 +41,6 @@ arvore *ler(arvore *a, FILE *arq)
     return a;
 }
 
-//Altura da arvore
 int altura(arvore *a)
 {
     if (a == NULL)
@@ -60,7 +57,6 @@ int altura(arvore *a)
     }
 }
 
-//Conta as folhas da arvore
 int contarFolhas (arvore *a)
 {
     if (a == NULL)
@@ -71,7 +67,6 @@ int contarFolhas (arvore *a)
     return (a->filho == NULL) ? 1 + cont : cont;
 }
 
-//Verificar se um no existe na arvore
 bool existe(arvore *a, int num)
 {
     if (a == NULL)
@@ -116,7 +111,6 @@ int nivelDoNo(arvore *a, int elem, int cont)
     return nivelDoNo(a->filho, elem, cont+1) + nivelDoNo(a->irmao, elem, cont);
 }
 
-//Imprimir em Notacao de Parenteses
 void imprimirNotacao(arvore *a)
 {
     printf("(");
@@ -133,7 +127,6 @@ void imprimirNotacao(arvore *a)
     printf(")");
 }
 
-//Imprimir Um Nivel da arvore
 void imprimirNivel(arvore *a, int nivel, int cont)
 {
     if (a == NULL)
@@ -151,7 +144,6 @@ void imprimirNivel(arvore *a, int nivel, int cont)
     }
 }
 
-//Imprimir a arvore em Largura
 void imprimirLargura(arvore *a, int h)
 {
     for (int i = 1; i <= h; i++)
@@ -163,27 +155,24 @@ void imprimirLargura(arvore *a, int h)
 
 arvore *liberar(arvore *a)
 {
-    if (a != NULL)
-    {
-        a->irmao = liberar(a->irmao);
-        a->filho = liberar(a->filho);
-        free(a);
-    }
+    if (a == NULL)
+        return NULL;
 
-    return NULL;
+    a->irmao = liberar(a->irmao);
+    a->filho = liberar(a->filho);
+    free(a);
 }
 
-//Imprimir um No Interno
 void imprimirNoInterno(arvore *a)
 {
-    if (a != NULL)
-    {
-        if (a->filho != NULL)
-            printf("%d ", a->info);
+    if (a == NULL)
+        return;
 
-        imprimirNoInterno(a->filho);
-        imprimirNoInterno(a->irmao);
-    }
+    if (a->filho != NULL)
+        printf("%d ", a->info);
+
+    imprimirNoInterno(a->filho);
+    imprimirNoInterno(a->irmao);
 }
 
 void menu()
@@ -206,9 +195,7 @@ int main(void)
     scanf("%s", entrada);
 
     if (!strstr(entrada, ".txt"))
-    {
         strcat(entrada, ".txt");
-    }
 
     FILE *arq = fopen(entrada, "r");
 
