@@ -1,6 +1,5 @@
 /**
- * Estruturas de Dados
- * Trabalho 4 (Arvore Geral)
+ * Estruturas de Dados (Arvore Geral)
  *
  * Edson Onildo
  * Isabela Carvalho
@@ -37,7 +36,6 @@ arvore *ler(arvore *a, FILE *arq)
     }
 
     fscanf(arq, "%c", &ch);
-
     return a;
 }
 
@@ -45,26 +43,21 @@ int altura(arvore *a)
 {
     if (a == NULL)
         return 0;
-    else
-    {
-        int hf = altura(a->filho) + 1;
-        int hi = altura(a->irmao);
 
-        if (hf > hi)
-            return hf;
-        else
-            return hi;
-    }
+    int hf = altura(a->filho) + 1;
+    int hi = altura(a->irmao);
+
+    return hf > hi ? hf : hi;
 }
 
-int contarFolhas (arvore *a)
+int contarFolhas(arvore *a)
 {
     if (a == NULL)
         return 0;
 
     int cont = contarFolhas(a->filho) + contarFolhas(a->irmao);
 
-    return (a->filho == NULL) ? 1 + cont : cont;
+    return a->filho == NULL ? ++cont : cont;
 }
 
 bool existe(arvore *a, int num)
@@ -88,7 +81,8 @@ arvore *inserir(arvore *a, int x, int y)
             a->filho = (arvore *) malloc(sizeof(arvore));
             a->filho->info = x;
             a->filho->filho = NULL;
-            a->filho->irmao = (filho != NULL) ? filho : NULL;
+            a->filho->irmao = filho != NULL ? filho : NULL;
+            return a;
         }
         else
         {
@@ -108,7 +102,7 @@ int nivelDoNo(arvore *a, int elem, int cont)
     if (a->info == elem)
         return cont;
 
-    return nivelDoNo(a->filho, elem, cont+1) + nivelDoNo(a->irmao, elem, cont);
+    return nivelDoNo(a->filho, elem, cont++) + nivelDoNo(a->irmao, elem, cont);
 }
 
 void imprimirNotacao(arvore *a)
@@ -177,7 +171,7 @@ void imprimirNoInterno(arvore *a)
 
 void menu()
 {
-    printf("DIGITE A OPCAO DESEJADA: \n\n");
+    printf("DIGITE A OPCAO DESEJADA: \n");
     printf("1. IMPRIMIR EM NOTACAO DE PARENTESES\n");
     printf("2. IMPRIMIR EM LARGURA\n");
     printf("3. IMPRIMIR OS NOS INTERNOS\n");
@@ -185,11 +179,12 @@ void menu()
     printf("5. ALTURA DA ARVORE\n");
     printf("6. NUMERO DE FOLHAS\n");
     printf("7. INSERIR UM NO X COMO FILHO DO NO Y\n");
+    printf("8. SAIR\n");
 }
 
 int main(void)
 {
-    char entrada[20];
+    char entrada[256];
 
     printf("DIGITE O NOME DO ARQUIVO: ");
     scanf("%s", entrada);
