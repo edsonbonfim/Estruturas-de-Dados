@@ -7,3 +7,4 @@ Este repositório contém as atividades da disciplina de Estruturas de Dados, mi
 * [Árvore de Busca](ArvoreDeBusca)
 * [Árvore AVL](ArvoreAVL)
 * [Árvore Geral](ArvoreGeral)
+* [Tipo Abstrato de Dados](TAD)
