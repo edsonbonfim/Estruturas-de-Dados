@@ -1,3 +1,14 @@
+/** Trabalho de Estruturas de Dados
+ *
+ * Trabalho 06 - Tipo abstrato de dados
+ *
+ * Edson Onildo
+ * Isabela Carvalho
+ *
+ *
+ * fila.h
+ */
+
 #ifndef TAD_FILA_H
 #define TAD_FILA_H
 
