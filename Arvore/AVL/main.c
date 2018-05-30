@@ -32,6 +32,11 @@ arvore *ler(arvore *a, FILE *arq)
     else
     {
         a = (arvore *) malloc(sizeof(arvore));
+        if (a == NULL)
+        {
+            fprintf(stderr, "Nao foi possivel alocar um espaco na memoria heap");
+            exit(EXIT_FAILURE);
+        }
         a->info = num;
         a->esq = ler(a->esq, arq);
         a->dir = ler(a->dir, arq);
