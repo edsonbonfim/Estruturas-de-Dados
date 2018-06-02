@@ -1,7 +1,7 @@
 Estruturas de Dados
 ===================
 
-Este repositório contém as atividades da disciplina de Estruturas de Dados, ministrada pelo professor Dr. Dalessando Vianna, na Universidade Federal Fluminense - CURO, 2018.1
+Este repositório contém as atividades da disciplina de Estruturas de Dados (UFF RCM00004)
 
 * [Lista](Lista)
 * [Árvore](Arvore)
