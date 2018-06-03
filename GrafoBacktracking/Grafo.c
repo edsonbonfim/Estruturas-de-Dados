@@ -56,7 +56,7 @@ void GrafoImprimir(Grafo grafo)
 
 int GrafoTamanho(Grafo g)
 {
-    return g->tam;
+    return g->tam - 1;
 }
 
 int GrafoGrauEntrada(Grafo g, int vertice)
