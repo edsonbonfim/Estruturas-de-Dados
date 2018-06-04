@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "Tools.h"
-#include "Lista.h"
 #include "Grafo.h"
 
 bool existirElemVet(const int *vet, int pos, int elem)
@@ -16,7 +15,7 @@ bool existirElemVet(const int *vet, int pos, int elem)
 
 void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noIntermed)
 {
-    Lista l = GrafoGetVertice(g, vet[pos-1]);
+    Aresta a = GrafoGetAresta(g, vet[pos - 1]);
 
     if (vet[pos-1] == dest && existirElemVet(vet, pos, noIntermed))
     {
@@ -27,11 +26,11 @@ void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noInterme
     }
     else
     {
-        for (l; !isNull(l); l = ListaProx(l))
+        for (a; !isNull(a); a = ArestaProx(a))
         {
-            if (!existirElemVet(vet, pos, ListaGetDestino(l)))
+            if (!existirElemVet(vet, pos, ArestaGetDestino(a)))
             {
-                vet[pos] = ListaGetDestino(l);
+                vet[pos] = ArestaGetDestino(a);
                 caminhosNoIntermediario(g, vet, pos+1, dest, noIntermed);
             }
         }
@@ -40,9 +39,9 @@ void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noInterme
 
 void ciclosHamiltonianos(Grafo g, int *vet, int pos)
 {
-    Lista l = GrafoGetVertice(g, vet[pos - 1]);
+    Aresta a = GrafoGetAresta(g, vet[pos - 1]);
 
-    if (GrafoTamanho(g) == pos && ListaGetDestino(l) == vet[0])
+    if (GrafoGetTamanho(g) == pos && ArestaGetDestino(a) == vet[0])
     {
         for (int i = 0; i < pos; i++)
             printf("%d ", vet[i]);
@@ -51,11 +50,11 @@ void ciclosHamiltonianos(Grafo g, int *vet, int pos)
     }
     else
     {
-        for (l; !isNull(l); l = ListaProx(l))
+        for (a; !isNull(a); a = ArestaProx(a))
         {
-            if (!existirElemVet(vet, pos, ListaGetDestino(l)))
+            if (!existirElemVet(vet, pos, ArestaGetDestino(a)))
             {
-                vet[pos] = ListaGetDestino(l);
+                vet[pos] = ArestaGetDestino(a);
                 ciclosHamiltonianos(g, vet, pos+1);
             }
         }

@@ -2,28 +2,28 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "Tools.h"
-#include "Lista.h"
+#include "Aresta.h"
 #include "Grafo.h"
 
-struct grafo
+struct vertice
 {
     int tam;
-    Lista *vet;
+    Aresta *vet;
 };
 
 Grafo GrafoInit(int n)
 {
-    Grafo g = (Grafo) malloc(sizeof(struct grafo));
+    Grafo g = (Grafo) malloc(sizeof(struct vertice));
 
     checkMalloc(g);
 
     g->tam = n += 1;
-    g->vet = (Lista *) malloc(n * sizeof(Lista));
+    g->vet = (Aresta *) malloc(n * sizeof(Aresta));
 
     checkMalloc(g->vet);
 
     for (int i = 0; i < n; i++)
-        g->vet[i] = ListaInit();
+        g->vet[i] = ArestaInit();
 
     return g;
 }
@@ -31,7 +31,7 @@ Grafo GrafoInit(int n)
 Grafo GrafoFree(Grafo g)
 {
     for (int i = 1; i < g->tam; i++)
-        g->vet[i] = ListaFree(g->vet[i]);
+        g->vet[i] = ArestaFree(g->vet[i]);
 
     free(g->vet);
     free(g);
@@ -39,7 +39,7 @@ Grafo GrafoFree(Grafo g)
     return NULL;
 }
 
-Lista GrafoGetVertice(Grafo g, int vertice)
+Aresta GrafoGetAresta(Grafo g, int vertice)
 {
     return g->vet[vertice];
 }
@@ -49,12 +49,12 @@ void GrafoImprimir(Grafo grafo)
     for (int i = 1; i < grafo->tam; i++)
     {
         printf("|%d|", i);
-        ListaImprimir(grafo->vet[i]);
+        ArestaImprimir(grafo->vet[i]);
         printf("\n");
     }
 }
 
-int GrafoTamanho(Grafo g)
+int GrafoGetTamanho(Grafo g)
 {
     return g->tam - 1;
 }
@@ -64,14 +64,14 @@ int GrafoGrauEntrada(Grafo g, int vertice)
     int cont = 0;
 
     for (int i = 1; i < g->tam; i++)
-        cont += ListaContDest(g->vet[i], vertice);
+        cont += ArestaContDest(g->vet[i], vertice);
 
     return cont;
 }
 
 int GrafoGrauSaida(Grafo g, int vertice)
 {
-    return ListaContElem(g->vet[vertice]);
+    return ArestaContElem(g->vet[vertice]);
 }
 
 int GrafoContAresta(Grafo g)
@@ -91,24 +91,24 @@ int GrafoGrauVertice(Grafo g, int vertice)
 
 float GrafoGetCusto(Grafo g, int pos)
 {
-    return ListaGetCusto(g->vet[pos]);
+    return ArestaGetCusto(g->vet[pos]);
 }
 
 bool GrafoInserir(Grafo g, int orig, int dest, float custo)
 {
-    if (ListaExisteDestino(g->vet[orig], dest))
+    if (ArestaExisteDestino(g->vet[orig], dest))
         return false;
 
-    g->vet[orig] = ListaInserir(g->vet[orig], dest, custo);
+    g->vet[orig] = ArestaInserir(g->vet[orig], dest, custo);
     return true;
 }
 
 bool GrafoRemover(Grafo g, int orig, int dest)
 {
-    if (!ListaExisteDestino(g->vet[orig], dest))
+    if (!ArestaExisteDestino(g->vet[orig], dest))
         return false;
 
-    g->vet[orig] = ListaRemover(g->vet[orig], dest);
+    g->vet[orig] = ArestaRemover(g->vet[orig], dest);
     return true;
 }
 

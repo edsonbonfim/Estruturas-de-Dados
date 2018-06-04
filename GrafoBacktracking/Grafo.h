@@ -1,16 +1,18 @@
 #ifndef GRAFO_GRAFO_H
 #define GRAFO_GRAFO_H
 
-typedef struct grafo *Grafo;
+#include "Aresta.h"
+
+typedef struct vertice *Grafo;
 
 Grafo GrafoInit(int n);
 Grafo GrafoFree(Grafo g);
 
-struct lista *GrafoGetVertice(Grafo g, int vertice);
+struct aresta *GrafoGetAresta(Grafo g, int vertice);
 
 void GrafoImprimir(Grafo g);
 
-int GrafoTamanho(Grafo g);
+int GrafoGetTamanho(Grafo g);
 int GrafoGrauVertice(Grafo g, int vertice);
 
 float GrafoGetCusto(Grafo g, int pos);
