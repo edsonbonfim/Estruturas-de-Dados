@@ -86,7 +86,7 @@ int ArestaContElem(Aresta a)
     return cont;
 }
 
-int ArestaGetDestino(Aresta a)
+int ArestaGetDest(Aresta a)
 {
     return a->dest;
 }
@@ -96,7 +96,7 @@ float ArestaGetCusto(Aresta a)
     return a->custo;
 }
 
-bool ArestaExisteDestino(Aresta a, int dest)
+bool ArestaExisteDest(Aresta a, int dest)
 {
     for (Aresta p = a; !isNull(p); p = p->prox)
         if (p->dest == dest)

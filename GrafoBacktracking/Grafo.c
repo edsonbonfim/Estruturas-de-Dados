@@ -96,7 +96,7 @@ float GrafoGetCusto(Grafo g, int pos)
 
 bool GrafoInserir(Grafo g, int orig, int dest, float custo)
 {
-    if (ArestaExisteDestino(g->vet[orig], dest))
+    if (ArestaExisteDest(g->vet[orig], dest))
         return false;
 
     g->vet[orig] = ArestaInserir(g->vet[orig], dest, custo);
@@ -105,7 +105,7 @@ bool GrafoInserir(Grafo g, int orig, int dest, float custo)
 
 bool GrafoRemover(Grafo g, int orig, int dest)
 {
-    if (!ArestaExisteDestino(g->vet[orig], dest))
+    if (!ArestaExisteDest(g->vet[orig], dest))
         return false;
 
     g->vet[orig] = ArestaRemover(g->vet[orig], dest);

@@ -15,7 +15,7 @@ bool existirElemVet(const int *vet, int pos, int elem)
 
 void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noIntermed)
 {
-    Aresta a = GrafoGetAresta(g, vet[pos - 1]);
+    Aresta a = GrafoGetAresta(g, vet[pos-1]);
 
     if (vet[pos-1] == dest && existirElemVet(vet, pos, noIntermed))
     {
@@ -28,9 +28,9 @@ void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noInterme
     {
         for (a; !isNull(a); a = ArestaProx(a))
         {
-            if (!existirElemVet(vet, pos, ArestaGetDestino(a)))
+            if (!existirElemVet(vet, pos, ArestaGetDest(a)))
             {
-                vet[pos] = ArestaGetDestino(a);
+                vet[pos] = ArestaGetDest(a);
                 caminhosNoIntermediario(g, vet, pos+1, dest, noIntermed);
             }
         }
@@ -39,22 +39,22 @@ void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noInterme
 
 void ciclosHamiltonianos(Grafo g, int *vet, int pos)
 {
-    Aresta a = GrafoGetAresta(g, vet[pos - 1]);
+    Aresta a = GrafoGetAresta(g, vet[pos-1]);
 
-    if (GrafoGetTamanho(g) == pos && ArestaGetDestino(a) == vet[0])
+    if (GrafoGetTamanho(g) == pos-1 && vet[pos-1] == vet[0])
     {
         for (int i = 0; i < pos; i++)
             printf("%d ", vet[i]);
 
-        printf("%d\n", vet[0]);
+        printf("\n");
     }
     else
     {
         for (a; !isNull(a); a = ArestaProx(a))
         {
-            if (!existirElemVet(vet, pos, ArestaGetDestino(a)))
+            if (!existirElemVet(vet, pos, ArestaGetDest(a)) || ArestaGetDest(a) == vet[0])
             {
-                vet[pos] = ArestaGetDestino(a);
+                vet[pos] = ArestaGetDest(a);
                 ciclosHamiltonianos(g, vet, pos+1);
             }
         }

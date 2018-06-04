@@ -15,9 +15,9 @@ void ArestaImprimir(Aresta a);
 int ArestaContDest(Aresta a, int dest);
 int ArestaContElem(Aresta a);
 
-int ArestaGetDestino(Aresta a);
+int ArestaGetDest(Aresta a);
 float ArestaGetCusto(Aresta a);
 
-_Bool ArestaExisteDestino(Aresta a, int dest);
+_Bool ArestaExisteDest(Aresta a, int dest);
 
 #endif //GRAFO_ARESTA_H
