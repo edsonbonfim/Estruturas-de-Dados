@@ -54,7 +54,7 @@ void GrafoImprimir(Grafo grafo)
     }
 }
 
-int GrafoGetTamanho(Grafo g)
+int GrafoGetTam(Grafo g)
 {
     return g->tam - 1;
 }

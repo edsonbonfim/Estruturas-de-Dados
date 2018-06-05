@@ -12,7 +12,7 @@ struct aresta *GrafoGetAresta(Grafo g, int vertice);
 
 void GrafoImprimir(Grafo g);
 
-int GrafoGetTamanho(Grafo g);
+int GrafoGetTam(Grafo g);
 int GrafoGrauVertice(Grafo g, int vertice);
 
 float GrafoGetCusto(Grafo g, int pos);

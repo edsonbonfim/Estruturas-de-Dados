@@ -41,7 +41,7 @@ void ciclosHamiltonianos(Grafo g, int *vet, int pos)
 {
     Aresta a = GrafoGetAresta(g, vet[pos-1]);
 
-    if (GrafoGetTamanho(g) == pos-1 && vet[pos-1] == vet[0])
+    if (GrafoGetTam(g) == pos-1 && vet[pos-1] == vet[0])
     {
         for (int i = 0; i < pos; i++)
             printf("%d ", vet[i]);
