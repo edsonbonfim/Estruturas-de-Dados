@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <limits.h>
 #include "Tools.h"
 #include "Grafo.h"
 
@@ -32,6 +33,40 @@ void caminhosNoIntermediario(Grafo g, int *vet, int pos, int dest, int noInterme
             {
                 vet[pos] = ArestaGetDest(a);
                 caminhosNoIntermediario(g, vet, pos+1, dest, noIntermed);
+            }
+        }
+    }
+}
+
+void caminhosMenorCusto(Grafo g, int *vet, int pos, int dest, float custo, float menor)
+{
+    Aresta a = GrafoGetAresta(g, vet[pos-1]);
+
+    static float m;
+    m = menor;
+
+    if (vet[pos-1] == dest)
+    {
+        if (custo < m)
+        {
+            m = custo;
+
+            for (int i = 0; i < pos; i++)
+                printf("%d ", vet[i]);
+
+            printf("\n");
+        }
+    }
+    else
+    {
+        for (a; !isNull(a); a = ArestaProx(a))
+        {
+            if (!existirElemVet(vet, pos, ArestaGetDest(a)))
+            {
+                custo += ArestaGetCusto(a);
+                vet[pos] = ArestaGetDest(a);
+                caminhosMenorCusto(g, vet, pos+1, dest, custo, m);
+                custo -= ArestaGetCusto(a);
             }
         }
     }
@@ -125,7 +160,10 @@ int main()
                 break;
 
             case 7:
-                //caminhosMenorCusto(g, v, 1);
+                printf("ORIGEM DESTINO: ");
+                scanf("%d %d", &orig, &dest);
+                v[0] = orig;
+                caminhosMenorCusto(g, v, 1, dest, 0, INT_MAX);
                 break;
 
             case 8:
