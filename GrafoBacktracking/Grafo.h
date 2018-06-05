@@ -15,8 +15,6 @@ void GrafoImprimir(Grafo g);
 int GrafoGetTam(Grafo g);
 int GrafoGrauVertice(Grafo g, int vertice);
 
-float GrafoGetCusto(Grafo g, int vertice);
-
 _Bool GrafoInserir(Grafo g, int orig, int dest, float custo);
 _Bool GrafoRemover(Grafo g, int orig, int dest);
 _Bool GrafoEsparco(Grafo g);

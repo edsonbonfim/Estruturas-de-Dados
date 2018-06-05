@@ -89,16 +89,6 @@ int GrafoGrauVertice(Grafo g, int vertice)
     return GrafoGrauEntrada(g, vertice) + GrafoGrauSaida(g, vertice);
 }
 
-float GrafoGetCusto(Grafo g, int vertice)
-{
-    float custo = 0;
-
-    for (Aresta a = g->vet[vertice]; !isNull(a); a = ArestaProx(a))
-        custo += ArestaGetCusto(a);
-
-    return custo;
-}
-
 bool GrafoInserir(Grafo g, int orig, int dest, float custo)
 {
     if (ArestaExisteDest(g->vet[orig], dest))
