@@ -1,11 +1,12 @@
 package backtrack;
 
+import java.util.List;
 import java.util.Vector;
 
 public class Caminho {
 
     private double custo;
-    private Vector<Integer> vet;
+    private List<Integer> vet;
 
     Caminho() {
         this.vet = new Vector<>();
@@ -30,7 +31,7 @@ public class Caminho {
         return custo;
     }
 
-    public Vector<Integer> getVet() {
+    public List<Integer> getVet() {
         return vet;
     }
 }

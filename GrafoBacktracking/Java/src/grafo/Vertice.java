@@ -1,13 +1,15 @@
 package grafo;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Vertice {
 
     private int orig;
+
     Grafo grafo;
-    ArrayList<Aresta> arestas;
+    List<Aresta> arestas;
 
     public Vertice(Grafo grafo, int orig) {
 
@@ -49,7 +51,7 @@ public class Vertice {
         throw new NoSuchElementException("O vertice '"+this.orig+"' nao possiu o destino '"+dest+"'.");
     }
 
-    public ArrayList<Aresta> getArestas()
+    public List<Aresta> getArestas()
     {
         return this.arestas;
     }
